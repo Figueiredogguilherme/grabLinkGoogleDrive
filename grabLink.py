@@ -1,6 +1,10 @@
 import pandas
+import os
 
 loop = True
+caminho = os.getcwd()
+caminho = caminho.split("\\")
+usuario = caminho[2]
 
 while loop == True:
 
@@ -23,8 +27,12 @@ while loop == True:
 
     planilha = pandas.DataFrame.from_dict(planilha)
 
-    with pandas.ExcelWriter(r"C:\Users\FIGUEIG\Desktop\links.xlsx", mode="a",if_sheet_exists="replace") as writer:
-        planilha.to_excel(writer, f"{numero}")
+    try:
+        with pandas.ExcelWriter(rf"C:\Users\{usuario}\Desktop\links.xlsx", mode="a",if_sheet_exists="replace") as writer:
+            planilha.to_excel(writer, f"{numero}")
+    except:
+        with pandas.ExcelWriter(rf"C:\Users\{usuario}\Desktop\links.xlsx", mode="w") as writer:
+            planilha.to_excel(writer, f"{numero}")
 
     print("OK")
 
