@@ -39,11 +39,12 @@ def main():
     quantidadeDeImagens = browser.find_element(By.XPATH, 
     '//*[@id=":1"]/div/c-wiz/div[2]/c-wiz/div[1]/c-wiz/div/c-wiz/div[1]/c-wiz/c-wiz/div')
     quantidadeDeImagens = quantidadeDeImagens.get_attribute("childElementCount")
+    quantidadeDeImagens = int(quantidadeDeImagens) + 1
 
     time.sleep(1)
     print("\n")
 
-    for imagem in range(1, int(quantidadeDeImagens)):
+    for imagem in range(1, quantidadeDeImagens):
 
         seletor = browser.find_element(By.XPATH, 
         f'//*[@id=":1"]/div/c-wiz/div[2]/c-wiz/div[1]/c-wiz/div/c-wiz/div[1]/c-wiz/c-wiz/div/c-wiz[{imagem}]')
@@ -55,4 +56,5 @@ def main():
     
     print("\n")
 
-main()
+while True:
+    main()
